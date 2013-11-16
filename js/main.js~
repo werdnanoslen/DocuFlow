@@ -6,7 +6,7 @@ $(document).on('ready')
     switch(page)
     {
         case 'flow':
-            /*var percentMainVisible = $(window).height() / $('#main').height();
+            var percentMainVisible = $(window).height() / $('#main').height();
             var selectionHeight = percentMainVisible * $('#overview').height() - 20;
             $('#overview-selection').css('height', selectionHeight);
 
@@ -25,7 +25,7 @@ $(document).on('ready')
                     $('#main-left').css('position', 'absolute');
                     $('#overview-selection').css('top', 0);
                 }
-            });*/
+            });
             break;
 
         case 'list':
