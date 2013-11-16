@@ -30,7 +30,7 @@
                 <a href="#">
                     Sign
                 </a>
-                <a href="#">
+                <a href="create.html">
                     Create
                 </a>
 
@@ -64,7 +64,7 @@
                     Complete
                 </div>
                 <div id="overview">
-                    <div id="overview-selection"></div>
+                    <img src="img/left.png" width="300" />
                 </div>
             </div>
 
@@ -211,7 +211,7 @@
                             </div>
                             <div class="signers-lower-date">
                                 <div class="signers-lower-day" style="color: #EF754B">
-                                    17
+                                    7
                                 </div>
                             </div>
                         </div>

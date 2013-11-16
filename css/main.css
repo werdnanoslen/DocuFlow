@@ -142,6 +142,7 @@ body
     position: absolute;
     top: 20px;
     left: 20px;
+    width: 100px;
 }
 
 #main
@@ -182,22 +183,9 @@ body
 
 #main #overview
 {
-    background: url('http://placehold.it/150x500&text=overview') no-repeat;
-    border: 1px solid #888;
     margin-top: 15px;
-    height: 500px;
     width: 150px;
     position: relative;
-}
-
-#main #overview-selection
-{
-    height: 250px;
-    width: 148px;
-    border: 1px solid #900;
-    background-color: rgba(0, 0, 0, 0);
-    position: absolute;
-    top: 0;
 }
 
 #main .signers
