@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<api>
+	<description>
+		<![CDATA[This is an API to for the atlanta govathon. The idea for this project is to help montior and manage document flow for heartsfield-jackson where each document must pass through many users and collect their signatures in order.]]>
+	</description>
+	
+	<command id='forms' security='public'>
+		
+		<description><![CDATA[This api lets you interact with the different documents being passed around and create new documents.]]></description>
+		
+		<index>
+			<description><![CDATA[Lists all documents in the database]]></description>
+			<action file='docuflow.php'><![CDATA[listforms();]]></action>
+		</index>
+		
+		<get>
+			<description><![CDATA[This gets the information about a single document, including the list of users that need to sign it, and their signature status]]></description>
+			<action file='docuflow.php'><![CDATA[getformdata($_REST['forms']);]]></action>
+		</get>
+		
+		<post>
+			<description><![CDATA[create a new document in the system, and sends notifications to the first user in the document list. The users who need to sign should be provided in an ordered list.]]></description>
+			<action file='docuflow.php'><![CDATA[createform()]]></action>
+		</post>
+		
+		<put>
+			<description><![CDATA[updates the values for a single document. This would be to do things like change the title or due date. User list updates should be done through the update commands]]></description>
+			<action file='docuflow.php'><![CDATA[updateform($_REST['forms'])]]></action>
+		</put>
+		
+		<command id='users' security='public'>
+			<index>
+			<description><![CDATA[lists all of the users who are supposed to sign the document in the order they are supposed to sign. Includes people who have already signed the document.]]></description>
+				<action file='docuflow.php'><![CDATA[listsignatures($_REST['forms']);]]></action>
+			</index>
+			
+			<get>
+				<description><![CDATA[Gets the information about a single signature, not sure if this method is really necessary]]></description>
+				<action file='docuflow.php'><![CDATA[getsignature($_REST['forms'],$_REST['forms/users']);]]></action>
+			</get>
+			
+			<post>
+				<description><![CDATA[Lets you insert a new signature to the document, specify where in the order you want the user to go, if needed the API will automatically shift the other signers appropriately.]]></description>
+				<action file='docuflow.php'><![CDATA[adduser($_REST['forms']);]]></action>
+			</post>
+			
+			<put>
+				<description><![CDATA[Used when someone signs a document. Just specify the user and their signature, the rest is done automatically.]]></description>
+				<action file='docuflow.php'><![CDATA[signdocument($_REST['forms'],$_REST['forms/users']);]]></action>
+			</put>
+			
+			
+		</command>
+		<command id='reminder' security='public'>
+			<description><![CDATA[This api sends a reminder to a specific user about a specific document]]></description>
+			<post>
+				<description><![CDATA[specify the user you want to send the reminder, and the system will do the rest.]]></description>
+				<action file='docuflow.php'><![CDATA[sendreminder($_REST['forms'],$_REST['forms/users']);]]></action>
+			</post>
+		</command>
+		
+		
+	</command>
+	
+	<command id='users' security='public'>
+		<description><![CDATA[ this is how to add/update user info in the system.]]></description>
+		<index>
+			<description><![CDATA[Lists all users in the system and their information]]></description>
+			<action file='docuflow.php'><![CDATA[listusers();]]></action>
+		</index>
+		
+		<get>
+			<description><![CDATA[gets the information about a single user, including the list of pending signatures.]]></description>
+			<action file='docuflow.php'><![CDATA[getuserinfo($_REST['users']);]]></action>
+		</get>
+		
+		<post>
+			<description><![CDATA[creates a new user with the given information]]></description>
+			<action file='docuflow.php'><![CDATA[creatuser();]]></action>
+		</post>
+		
+		<put>
+			<description><![CDATA[updates the user information.]]></description>
+			<action file='docuflow.php'><![CDATA[updateuser($_REST['users']);]]></action>
+		</put>
+		
+		<command id='signatures' security='public'>
+		
+			<index>
+				<description><![CDATA[returns a list of the signatures of a user, probably redundant with the above get command.]]></description>
+				<action file='docuflow.php'><![CDATA[listusersignatures($_REST['users']);]]></action>
+			</index>
+			
+		</command>
+	</command>
+	
+</api>
